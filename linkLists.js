@@ -39,10 +39,14 @@ class LinkedList {
     }
     this.size += 1;
   }
+
+  size() {
+    return this.size;
+  }
 }
 
 const list = new LinkedList();
 list.append('a');
 list.append('b');
 list.prepend('new first');
-console.log(list);
+console.log(list.size);
