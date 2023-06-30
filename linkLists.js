@@ -74,14 +74,46 @@ class LinkedList {
     this.at(this.size-2).next = null;
     this.size--;
   }
+
+  contains(value) {
+    // return true if value is in list. False otherwise
+
+    // if list is empty, return false;
+    if (!this.head) return false;
+    let current = this.head;
+    // iterate through elements looking for the value
+    while (current.next) {
+      if (current.value === value) return true;
+      current = current.next;
+    }
+    // check the final node
+    if (current.value === value) return true;
+    // all above failed
+    return false;
+  }
+
+  find(value) {
+    // returns index of node containing value, or null
+
+    // if list is empty, return null
+    if (!this.head) return null;
+    // if the list does not contain the value, return null
+    if (!this.contains(value)) return null;
+    // iterate through the list and return the index
+    let current = this.head;
+    let counter = 0;
+    while (counter < this.size) {
+      if (current.value === value) return counter;
+      current = current.next;
+      counter++;
+    }
+  }
 }
 
 const list = new LinkedList();
 list.append('a');
 list.append('b');
-console.log(list);
 list.prepend('new first');
 list.append('c');
 console.log(list);
-list.pop();
-console.log(list);
+console.log(list.find('f'));
