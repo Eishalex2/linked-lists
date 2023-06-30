@@ -57,10 +57,23 @@ class LinkedList {
     }
     return current;
   }
+
+  at(index) {
+    // returns the node at the given index;
+    // idea: set up a counter
+    if (index > this.size) return `Index too large. Please enter an index smaller than ${this.size}`;
+    let counter = 0;
+    let current = this.head;
+    while (counter < index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
 }
 
 const list = new LinkedList();
 list.append('a');
 list.append('b');
 list.prepend('new first');
-console.log(list.tail());
+console.log(list.at(4));
