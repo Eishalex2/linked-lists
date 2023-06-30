@@ -108,6 +108,19 @@ class LinkedList {
       counter++;
     }
   }
+
+  toString() {
+    // represent linkedList objects as strings. Thinking concat
+    if (!this.head) return 'null';
+    let current = this.head;
+    let string = "";
+    while (current.next) {
+      string += `( ${current.value} ) -> `;
+      current = current.next;
+    }
+    string += `( ${current.value} ) -> null`;
+    return string;
+  }
 }
 
 const list = new LinkedList();
@@ -116,4 +129,4 @@ list.append('b');
 list.prepend('new first');
 list.append('c');
 console.log(list);
-console.log(list.find('f'));
+console.log(list.toString());
