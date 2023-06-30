@@ -25,10 +25,24 @@ class LinkedList {
       current.next = node;
     }
     this.size += 1;
-  } 
+  }
+  
+  prepend(value) {
+    const node = new Node(value);
+    
+    if (this.head === null) {
+      this.head = node;
+    } else {
+      let previousFirst = this.head;
+      this.head = node;
+      node.next = previousFirst;
+    }
+    this.size += 1;
+  }
 }
 
 const list = new LinkedList();
 list.append('a');
 list.append('b');
+list.prepend('new first');
 console.log(list);
