@@ -60,7 +60,6 @@ class LinkedList {
 
   at(index) {
     // returns the node at the given index;
-    // idea: set up a counter
     if (index > this.size) return `Index too large. Please enter an index smaller than ${this.size}`;
     let counter = 0;
     let current = this.head;
@@ -70,10 +69,19 @@ class LinkedList {
     }
     return current;
   }
+
+  pop() {
+    this.at(this.size-2).next = null;
+    this.size--;
+  }
 }
 
 const list = new LinkedList();
 list.append('a');
 list.append('b');
+console.log(list);
 list.prepend('new first');
-console.log(list.at(4));
+list.append('c');
+console.log(list);
+list.pop();
+console.log(list);
