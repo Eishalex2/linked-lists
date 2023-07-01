@@ -127,8 +127,6 @@ class LinkedList {
 
   insertAt(value, index) {
     const node = new Node(value);
-    // need the previous node to point to node, and node to point to the
-    // one after
     if (index === 0) {
       this.prepend(value);
       return;
@@ -138,19 +136,30 @@ class LinkedList {
       return;
     }
     if (index > this.size) {
-      console.log(`Index too large. Please enter an index smaller than ${this.size}`)
+      console.log(`Index too large. Please enter an index smaller than ${this.size}`);
       return;
     }
     const beforeIndex = index - 1;
     node.next = this.at(index);
     this.at(beforeIndex).next = node;
     this.size += 1;
-
   }
-    
-  // inserts a new node with the provided value at the given index.
 
-  // removeAt(index);
+  removeAt(index) {
+    const node = this.at(index);
+    if (index === this.size - 1) {
+      this.pop();
+      return;
+    } else if (index >= this.size) {
+      console.log(`Index too large. Please enter an index smaller than ${this.size}`);
+      return;
+    } else if (index === 0) {
+      this.head = node.next;
+    } else {
+      this.at(index - 1).next = node.next;
+    }
+    this.size -= 1;
+  }
 }
 
 const list = new LinkedList();
@@ -158,3 +167,8 @@ list.append('a');
 list.append('b');
 list.prepend('new first');
 list.append('c');
+console.log(list.toString());
+console.log(list.size);
+list.insertAt("new value", 3);
+console.log(list.toString());
+console.log(list.size)
